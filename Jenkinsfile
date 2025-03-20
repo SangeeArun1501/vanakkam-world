@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/SangeeArun1501/vanakkam-world.git'
+                git branch: 'master', url: 'https://github.com/SangeeArun1501/vanakkam-world.git'
             }
         }
         stage('Build with Maven') {
