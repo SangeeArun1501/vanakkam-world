@@ -12,13 +12,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/SangeeArun1501/vanakkam-world.git'
             }
         }
-        stage('Build with Maven') {
-            steps {
-                script {
-                    sh 'mvn clean install'
-                }
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -43,13 +36,6 @@ pipeline {
                 script {
                     sh "docker tag my-app-repo:latest 396943898190.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:latest"
                     sh "docker push 396943898190.dkr.ecr.us-east-1.amazonaws.com/my-app-repo:latest"
-                }
-            }
-        }
-        stage('Deploy to EC2') {
-            steps {
-                script {
-                    sh "docker run -d --name my-app ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:latest"
                 }
             }
         }
